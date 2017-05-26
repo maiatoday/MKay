@@ -26,5 +26,5 @@ data class Entry (
         val moodId: Long = 0,
         val sentiment: Int = 0,
         val energy: Int = 0,
-        @Embedded val location: Location = Location()
+        @Embedded val location: Location = Location(0.0F, 0.0F)
 )

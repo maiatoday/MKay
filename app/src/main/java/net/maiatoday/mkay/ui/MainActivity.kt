@@ -1,9 +1,11 @@
-package net.maiatoday.mkay
+package net.maiatoday.mkay.ui
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
+import net.maiatoday.mkay.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
+    private lateinit var  viewModel: EntriesViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,5 +38,7 @@ class MainActivity : AppCompatActivity() {
         mTextMessage = findViewById(R.id.message) as TextView
         val navigation = findViewById(R.id.navigation) as BottomNavigationView
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        viewModel = ViewModelProviders.of(this).get(EntriesViewModel::class.java)
     }
 }

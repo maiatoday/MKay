@@ -14,7 +14,7 @@ abstract class MoodDao {
     @Query("SELECT * FROM mood")
     abstract fun getAll(): LiveData<List<Mood>>
 
-    @Query("SELECT * FROM mood WHERE id = :id")
+    @Query("SELECT * FROM mood WHERE id = :p0") //kapt only works if I use p0
     abstract fun get(id: Long): Mood?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

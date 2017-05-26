@@ -1,6 +1,8 @@
 package net.maiatoday.mkay.model
 
 /**
- * Created by maia on 2017/05/25.
+ * Location class, don't use a data class because it makes multiple constructors which confuses Room
+ * Created by maia on 2017/05/26.
  */
-data class Location (val latitude: Float = 0.0F, val longitude: Float = 0.0F)
+
+class Location(val latitude: Float, val longitude: Float)

@@ -24,8 +24,8 @@ abstract class EntryDao {
     "WHERE entry.moodId = mood.id")
     abstract fun loadItems(): LiveData<Item>
 
-    fun createEntry(name: String) {
-        insertOrUpdate(Entry(0, name))
+    fun createEntry(name: String, moodId:Long) {
+        insertOrUpdate(Entry(0, name, moodId))
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

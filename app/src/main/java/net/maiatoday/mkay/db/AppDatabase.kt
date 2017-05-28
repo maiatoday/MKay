@@ -22,7 +22,7 @@ abstract class AppDatabase : RoomDatabase() {
   abstract fun moodModel(): MoodDao
 
   companion object {
-    private const val DB_NAME = "mkay.db"
+    const val DB_NAME = "mkay.db"
 
     fun createInMemoryDatabase(context: Context): AppDatabase
         = Room.inMemoryDatabaseBuilder(context.applicationContext, AppDatabase::class.java).build()

@@ -18,6 +18,9 @@ abstract class MoodDao {
     @Query("SELECT * FROM mood WHERE id = :p0") //kapt only works if I use p0
     abstract fun get(id: Long): Mood?
 
+    fun createMood(name: String, moodId:Long) {
+        insertOrUpdate(Mood(id=moodId, moodName=name))
+    }
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertOrUpdate(vararg items: Mood)
 

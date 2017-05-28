@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey
         tableName = "mood"
 )
 data class Mood (
-        @PrimaryKey(autoGenerate = true) val id: Long,
+        @PrimaryKey val id: Long,
         val moodName: String = "",
         val colour: Int = 0
 )

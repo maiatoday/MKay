@@ -7,6 +7,7 @@ import net.maiatoday.mkay.MKayApplication
 import net.maiatoday.mkay.db.AppDatabase
 import net.maiatoday.mkay.db.entity.Entry
 import net.maiatoday.mkay.db.entity.Item
+import net.maiatoday.mkay.db.util.DbCreate
 import javax.inject.Inject
 
 /**
@@ -16,16 +17,17 @@ class EntriesViewModel constructor(application: Application) : AndroidViewModel(
 
     @Inject lateinit var db: AppDatabase
     lateinit var items: LiveData<List<Item>>
+    var dbCreate: DbCreate
 
     init {
         (application as MKayApplication).appComponent.inject(this)
+        dbCreate = DbCreate(application)
+        dbCreate.buildDb()
     }
 
     fun hasEntries() = db.entryModel().count() != 0
 
     fun entries() = db.entryModel().getAll()
-
-    fun createEntry(name: String = "") = db.entryModel().createEntry(name)
 
     fun delete(counterId: Long): Entry? {
         db.entryModel().get(counterId)?.let {

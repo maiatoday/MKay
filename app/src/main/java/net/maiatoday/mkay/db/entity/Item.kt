@@ -1,4 +1,4 @@
-package net.maiatoday.mkay.model
+package net.maiatoday.mkay.db.entity
 
 /**
  * Created by maia on 2017/05/25.

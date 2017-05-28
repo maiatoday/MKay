@@ -40,5 +40,6 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         viewModel = ViewModelProviders.of(this).get(EntriesViewModel::class.java)
+
     }
 }

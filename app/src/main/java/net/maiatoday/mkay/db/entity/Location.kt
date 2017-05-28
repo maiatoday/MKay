@@ -1,4 +1,4 @@
-package net.maiatoday.mkay.model
+package net.maiatoday.mkay.db.entity
 
 /**
  * Location class, don't use a data class because it makes multiple constructors which confuses Room

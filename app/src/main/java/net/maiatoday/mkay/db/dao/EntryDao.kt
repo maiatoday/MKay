@@ -1,7 +1,9 @@
-package net.maiatoday.mkay.model
+package net.maiatoday.mkay.db.dao
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
+import net.maiatoday.mkay.db.entity.Entry
+import net.maiatoday.mkay.db.entity.Item
 
 /**
  * Created by maia on 2017/05/25.
@@ -21,6 +23,10 @@ abstract class EntryDao {
     @Query("SELECT entry.id, entry.name, mood.moodName, mood.colour FROM entry, mood " +
     "WHERE entry.moodId = mood.id")
     abstract fun loadItems(): LiveData<Item>
+
+    fun createEntry(name: String) {
+        insertOrUpdate(Entry(0, name))
+    }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertOrUpdate(vararg items: Entry)

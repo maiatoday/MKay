@@ -1,7 +1,8 @@
-package net.maiatoday.mkay.model
+package net.maiatoday.mkay.db.dao
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
+import net.maiatoday.mkay.db.entity.Mood
 
 /**
  * Created by maia on 2017/05/25.

@@ -15,7 +15,7 @@ abstract class MoodDao {
     @Query("SELECT * FROM mood")
     abstract fun getAll(): LiveData<List<Mood>>
 
-    @Query("SELECT * FROM mood WHERE id = :p0") //kapt only works if I use p0
+    @Query("SELECT * FROM mood WHERE id = :id")
     abstract fun get(id: Long): Mood?
 
     fun createMood(name: String, moodId:Long) {

@@ -8,6 +8,6 @@ import android.arch.persistence.room.PrimaryKey
  * Created by maia on 2017/09/09.
  */
 @Entity(tableName = "entry_mood")
-data class EntryMood(@field:PrimaryKey(autoGenerate = true) var id: Long = 0,
+data class EntryMood(@PrimaryKey(autoGenerate = true) var id: Long = 0,
                      val entryId: Long,
                      val moodId: Long)

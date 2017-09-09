@@ -10,7 +10,7 @@ import java.util.*
  */
 
 @Entity(tableName = "entries")
-data class Entry(@field:PrimaryKey(autoGenerate = true) var id: Long = 0,
+data class Entry(@PrimaryKey(autoGenerate = true) var id: Long = 0,
                  val name: String,
                  val sentiment: Int,
                  val energy: Int,

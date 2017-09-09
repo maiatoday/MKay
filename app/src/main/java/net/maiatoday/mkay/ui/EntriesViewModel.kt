@@ -6,7 +6,6 @@ import android.arch.lifecycle.LiveData
 import net.maiatoday.mkay.MKayApplication
 import net.maiatoday.mkay.db.AppDatabase
 import net.maiatoday.mkay.db.entity.Entry
-import net.maiatoday.mkay.db.entity.Item
 import net.maiatoday.mkay.db.util.DbCreate
 import javax.inject.Inject
 
@@ -16,7 +15,6 @@ import javax.inject.Inject
 class EntriesViewModel constructor(application: Application) : AndroidViewModel(application) {
 
     @Inject lateinit var db: AppDatabase
-    lateinit var items: LiveData<List<Item>>
     var dbCreate: DbCreate
 
     init {

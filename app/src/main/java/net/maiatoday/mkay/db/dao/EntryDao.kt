@@ -3,7 +3,8 @@ package net.maiatoday.mkay.db.dao
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import net.maiatoday.mkay.db.entity.Entry
-import net.maiatoday.mkay.db.entity.Item
+import net.maiatoday.mkay.db.entity.Location
+import java.util.*
 
 /**
  * Created by maia on 2017/05/25.
@@ -11,26 +12,25 @@ import net.maiatoday.mkay.db.entity.Item
 
 @Dao
 abstract class EntryDao {
-    @Query("SELECT COUNT(*) FROM entry")
+    @Query("SELECT COUNT(*) FROM entries")
     abstract fun count(): Int
 
-    @Query("SELECT * FROM entry")
+    @Query("SELECT * FROM entries")
     abstract fun getAll(): LiveData<List<Entry>>
 
-    @Query("SELECT * FROM entry WHERE id = :id")
+    @Query("SELECT * FROM entries WHERE id = :id")
     abstract fun get(id: Long): Entry?
 
-    @Query("SELECT entry.id, entry.name, mood.moodName, mood.colour FROM entry, mood " +
-    "WHERE entry.moodId = mood.id")
-    abstract fun loadItems(): LiveData<Item>
-
-    fun createEntry(name: String, moodId:Long) {
-        insertOrUpdate(Entry(0, name, moodId))
-    }
+//    @Query("SELECT * FROM entries")
+//    abstract fun loadEntriesWithMoods(): List<EntryWithMoods>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertOrUpdate(vararg items: Entry)
+    abstract fun insertOrUpdate(vararg items: Entry): List<Long>
 
     @Delete
     abstract fun delete(item: Entry)
+
+    fun createEntry(name: String, sentiment: Int, energy: Int, location: Location):  Long {
+        return insertOrUpdate(Entry(name=name,sentiment=sentiment, energy=energy, date=Date(), location=location)).get(0)
+    }
 }

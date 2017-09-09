@@ -4,13 +4,10 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 /**
+ * Basic mood class. It has a name and a colour
  * Created by maia on 2017/05/25.
  */
-@Entity(
-        tableName = "mood"
-)
-data class Mood (
-        @PrimaryKey val id: Long,
-        val moodName: String = "",
-        val colour: Int = 0
-)
+@Entity(tableName = "moods")
+data class Mood(@field:PrimaryKey(autoGenerate = true) var id: Long = 0,
+           val moodName: String,
+           val colour: Int)

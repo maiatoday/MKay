@@ -7,6 +7,7 @@ import android.os.AsyncTask
 import android.util.Log
 import net.maiatoday.mkay.MKayApplication
 import net.maiatoday.mkay.db.AppDatabase
+import net.maiatoday.mkay.db.entity.Location
 import javax.inject.Inject
 
 /**
@@ -23,7 +24,8 @@ class DbCreate constructor(application: Application) {
 
 
     fun buildDb() {
-        val buildDbTask = object : AsyncTask<Context, Void?, Void?>() {
+        val buildDbTask: AsyncTask<Context, Void?, Void?>
+        buildDbTask = object : AsyncTask<Context, Void?, Void?>() {
 
             override fun doInBackground(vararg params: Context): Void? {
                 Log.d("DatabaseCreator",
@@ -35,17 +37,25 @@ class DbCreate constructor(application: Application) {
                 context.deleteDatabase(AppDatabase.DB_NAME)
 
                 // Build the database!
-                val db = Room.databaseBuilder(context.applicationContext,
-                        AppDatabase::class.java, AppDatabase.DB_NAME).build()
+                val db = AppDatabase.getInstance(context)
 
                 // Add some data to the database
-              //  DatabaseInitUtil.initializeDb(db)
-                db.moodModel().createMood("urgh", 7)
-                db.entryModel().createEntry("flopsy", 7)
-                db.entryModel().createEntry("mopsy", 7)
-                db.entryModel().createEntry("cotton-tail", 7)
-                db.entryModel().createEntry("peter", 7)
-                db.entryModel().createEntry("nutkin", 7)
+                //  DatabaseInitUtil.initializeDb(db)
+
+                val moodId1 = db.moodModel().createMood("urgh", 7)
+                val moodId2 = db.moodModel().createMood("yay", 8)
+                val entryId1 = db.entryModel().createEntry("flopsy", 7, 2, Location(18.0F,-32.0F))
+                val entryId2 = db.entryModel().createEntry("mopsy", 6, 10, Location(18.0F,-32.0F))
+                val entryId3 = db.entryModel().createEntry("cottonTail", 5, 1, Location(18.0F,-32.0F))
+                val entryId4 = db.entryModel().createEntry("peter", 4, 0, Location(18.0F,-32.0F))
+                val entryId5 = db.entryModel().createEntry("nutkin", -9, 100, Location(18.0F,-32.0F))
+                db.entryMoodModel().addMoodToEntry(entryId1, moodId1)
+                db.entryMoodModel().addMoodToEntry(entryId1, moodId2)
+                db.entryMoodModel().addMoodToEntry(entryId2, moodId1)
+                db.entryMoodModel().addMoodToEntry(entryId3, moodId1)
+                db.entryMoodModel().addMoodToEntry(entryId4, moodId2)
+                db.entryMoodModel().addMoodToEntry(entryId5, moodId2)
+
                 Log.d("DatabaseCreator",
                         "DB was populated in thread " + Thread.currentThread().name)
 
@@ -58,7 +68,7 @@ class DbCreate constructor(application: Application) {
                 // mIsDatabaseCreated.setValue(true)
             }
         }
-                buildDbTask.execute(context.applicationContext)
+        buildDbTask.execute(context.applicationContext)
 
     }
 }

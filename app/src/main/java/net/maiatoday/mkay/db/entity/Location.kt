@@ -1,8 +1,8 @@
 package net.maiatoday.mkay.db.entity
 
 /**
- * Location class, don't use a data class because it makes multiple constructors which confuses Room
+ * Location class will be embedded in the Entry entity
  * Created by maia on 2017/05/26.
  */
 
-class Location(val latitude: Float, val longitude: Float)
+data class Location(val latitude: Float, val longitude: Float)

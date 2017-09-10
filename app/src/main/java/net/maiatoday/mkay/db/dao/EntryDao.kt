@@ -2,8 +2,7 @@ package net.maiatoday.mkay.db.dao
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
-import net.maiatoday.mkay.db.entity.Entry
-import net.maiatoday.mkay.db.entity.Location
+import net.maiatoday.mkay.db.entity.*
 import java.util.*
 
 /**
@@ -21,8 +20,8 @@ abstract class EntryDao {
     @Query("SELECT * FROM entries WHERE id = :id")
     abstract fun get(id: Long): Entry?
 
-//    @Query("SELECT * FROM entries")
-//    abstract fun loadEntriesWithMoods(): List<EntryWithMoods>
+    @Query("SELECT * FROM entries WHERE id = :id")
+    abstract fun getEntryWithMoods(id: Long): EntryWithMoods
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertOrUpdate(vararg items: Entry): List<Long>
@@ -33,4 +32,11 @@ abstract class EntryDao {
     fun createEntry(name: String, sentiment: Int, energy: Int, location: Location):  Long {
         return insertOrUpdate(Entry(name=name,sentiment=sentiment, energy=energy, date=Date(), location=location)).get(0)
     }
+
+    @Query("SELECT * FROM entries WHERE id = :id")
+    abstract fun getEntryWithComments(id: Long): EntryAllComments
+
+    @Query("SELECT * FROM entries WHERE id = :id")
+    abstract fun getCompleteEntry(id: Long): EntryComplete
 }
+

@@ -55,9 +55,28 @@ class DbCreate constructor(application: Application) {
                 db.entryMoodModel().addMoodToEntry(entryId3, moodId1)
                 db.entryMoodModel().addMoodToEntry(entryId4, moodId2)
                 db.entryMoodModel().addMoodToEntry(entryId5, moodId2)
+                db.commentModel().addCommentToEntry(entryId1, "Hrmph_Hello")
+                db.commentModel().addCommentToEntry(entryId1, "...cough...Hello")
+                db.commentModel().addCommentToEntry(entryId5, "Hello")
+                db.commentModel().addCommentToEntry(entryId5, "World")
+                db.commentModel().addCommentToEntry(entryId5, "Sigh")
+                db.commentModel().addCommentToEntry(entryId4, "Eat a banana")
 
                 Log.d("DatabaseCreator",
                         "DB was populated in thread " + Thread.currentThread().name)
+
+                val test = db.entryModel().getEntryWithComments(entryId5)
+
+                Log.d("DatabaseCreator", test.toString())
+
+                val test2 = db.entryModel().getEntryWithMoods(entryId1)
+
+                Log.d("DatabaseCreator", test2.toString())
+
+
+                val test3 = db.entryModel().getCompleteEntry(entryId1)
+
+                Log.d("DatabaseCreator", test3.toString())
 
 
                 return null

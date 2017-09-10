@@ -3,6 +3,7 @@ package net.maiatoday.mkay.db.dao
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import net.maiatoday.mkay.db.entity.Mood
+import net.maiatoday.mkay.db.entity.MoodWithEntries
 
 /**
  * Created by maia on 2017/05/25.
@@ -18,8 +19,8 @@ abstract class MoodDao {
     @Query("SELECT * FROM moods WHERE id = :id")
     abstract fun get(id: Long): Mood?
 
-//    @Query("SELECT * FROM moods")
-//    abstract fun loadMoodsWithEntries(): List<MoodWithEntries>
+    @Query("SELECT * FROM moods WHERE id = :id")
+    abstract fun getMoodWithEntries(id: Long): MoodWithEntries
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertOrUpdate(vararg items: Mood):  List<Long>

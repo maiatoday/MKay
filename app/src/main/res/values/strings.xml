@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_licenses">Licenses</string>
+    <string name="title_licenses">Licenses</string>
+    <string name="weekly_sales_title">Week</string>
+    <string name="daily_sales_title">Today</string>
+    <string name="navigation_drawer_transaction_history">Transaction History</string>
 </resources>
